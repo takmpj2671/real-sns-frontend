@@ -1,0 +1,7 @@
+.timeline{
+    flex: 6;
+}
+
+.timelineWrapper{
+    padding: 20px;/*上下左右すべての方向に20pxずつ内側余白*/
+}

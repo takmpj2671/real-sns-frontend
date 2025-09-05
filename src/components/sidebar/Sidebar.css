@@ -1,0 +1,64 @@
+.sidebar{
+    flex: 2.5;
+    height: 100vh;
+}
+
+.sidebarWrapper{
+    padding:20px;/*上下左右すべてに20pxの内側余白ができる*/
+}
+
+.sidebarList{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.sidebarListItem{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 4px 6px;
+    cursor: pointer;
+    box-shadow: 4px 7px 15px -7px #274760;
+    border-radius: 13px;
+    transition: all 0.3s;/*ゆっくりと沈み込む。*/
+}
+
+.sidebarListItem:hover{
+    box-shadow: none; /*ホバーした時に、box-shadowを消す。*/
+    transform: translateY(5px);/*ホバーする時に、沈み込むような形になる。*/
+}
+
+.sidebarIcon{
+    font-size: 35px !important;
+    margin-right: 10px;
+}
+
+.sidebarListItemText{
+    font-size: 20px;
+    padding-top: 3px;
+}
+
+.sidebarHr{
+    margin: 20px 0;
+}
+
+.sidebarFriendImg{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;/*画像の比率を調整してくれる。*/
+    margin-right: 10px;/*ImgとTextの間隔を空ける。*/
+}
+
+.sidebarFriendList{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.sidebarFriend{
+    display: flex;/*横並びになり、中央に揃える。*/
+    align-items: center;
+    margin-bottom: 15px;/*上下の間隔を空ける。*/
+}

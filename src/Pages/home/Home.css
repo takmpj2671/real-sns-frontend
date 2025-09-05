@@ -1,0 +1,5 @@
+.homeContainer{
+    display: flex; /*Container内を横並びにする。*/
+    width: 100%;
+    background-color: #f8fcff;
+}

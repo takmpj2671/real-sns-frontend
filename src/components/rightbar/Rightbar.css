@@ -1,0 +1,131 @@
+.rightbar{
+    flex: 3.5;
+}
+
+.rightbarWrapper{
+    padding: 20px 20px 0 0; /*上、下、右、左*/
+}
+
+.eventContainer{
+    display: flex;
+    align-items: center;
+
+}
+
+.starImg{
+    width: 40px;
+    height: 40px;
+    margin-right: 5px;
+}
+
+.eventText{
+    font: weight 300px;
+    font-size: 15px;
+}
+
+.eventImg{
+    width: 100%;
+    border-radius: 15px;
+    margin: 25px 0;/*上下25px、左右０*/
+}
+
+.rightbarTitle{
+    margin-bottom: 20px;
+}
+
+.rightbarFriendList{
+    padding: 0;
+    margin: 0;
+    list-style: none;/*dotを消す*/
+}
+
+.rightbarFriend{
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;;
+}
+
+.rightbarProfileImgContainer{
+    margin-right: 10px;
+    position: relative;
+}
+
+.rightbarProfileImg{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;/*画像の大きさは変えず、その中身の画像の大きさを調節する。*/
+}
+
+.rightbarUsername{
+    font-weight:550 ;
+}
+
+.rightbarOnline{
+    background-color: purple;
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    top: -2px;
+    left: 0;
+    border: 2px solid white
+}
+
+.promotionTitle{
+    font-size: 18px;
+    font-weight: 550;
+    margin-bottom: -10px;
+}
+
+.rightbarPromotionImg{
+    width: 85%;
+    border-radius: 10px;
+    margin: 20px 20px;
+}
+
+.promotionName{
+    font-size: small;
+    color: rgb(22, 18, 18);
+    margin-top: -20px;
+}
+
+.rightbarTitle{
+    font-size: 18px;
+    font-weight: 550;
+    margin-bottom: 10px;
+}
+
+.rightbarInfo{
+    margin-bottom: 30px;
+}
+
+.rightbarInfoItem{
+    margin-bottom: 10px;
+}
+
+.rightbarInfoKey{
+    font-weight: 500;
+    margin-right: 5px;
+    color: #555
+}
+
+.rightbarFollowings{
+    display: flex;
+    flex-wrap: wrap; /*小さくなって折りたためるようになる。*/
+    justify-content: space-between;
+}
+
+.rightbarFollowing{
+    display: flex;
+    flex-direction: column;/*flexの横並びを微調整。*/
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.rightbarFollowingImg{
+    width: 100px;
+    height: 100px;
+    border-radius: 15px;
+    object-fit: cover;
+}
