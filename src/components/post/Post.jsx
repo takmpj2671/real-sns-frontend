@@ -5,6 +5,8 @@ import { Users } from "../../assets/dummyData.js";
 import { useState } from "react";
 
 export default function Post({ post }) {
+  const PUBLIC_FOLDER = import.meta.env.VITE_PUBLIC_FOLDER;
+  
   const [like, setLike] = useState(post.like);
   const [isLiked, setIsLiked] = useState(false);
 
@@ -37,7 +39,7 @@ export default function Post({ post }) {
         </div>
         <div className="postCenter">
           <span className="postText">{post.desc}</span>
-          <img src={post.photo} alt="" className="postImg" />
+          <img src={PUBLIC_FOLDER + post.photo} alt="" className="postImg" />
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">
