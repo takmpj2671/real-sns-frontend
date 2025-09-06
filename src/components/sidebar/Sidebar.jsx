@@ -43,7 +43,7 @@ export default function Sidebar() {
           <li className="sidebarListItem">
             <Person className="sidebarIcon" />
             <Link
-              to="/profile/:username"
+              to="/profile/Yusuke"
               style={{ textDecoration: "none", color: "black" }}
             >
               <span className="sidebarListItemText">プロフィール</span>
