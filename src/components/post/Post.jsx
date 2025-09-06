@@ -6,7 +6,7 @@ import { useState } from "react";
 
 export default function Post({ post }) {
   const PUBLIC_FOLDER = import.meta.env.VITE_PUBLIC_FOLDER;
-  
+
   const [like, setLike] = useState(post.like);
   const [isLiked, setIsLiked] = useState(false);
 
@@ -23,6 +23,7 @@ export default function Post({ post }) {
           <div className="postTopLeft">
             <img
               src={
+                PUBLIC_FOLDER +
                 Users.filter((user) => user.id === post.id)[0].profilePicture
               }
               alt=""
@@ -44,7 +45,7 @@ export default function Post({ post }) {
         <div className="postBottom">
           <div className="postBottomLeft">
             <img
-              src="./assets/heart.png"
+              src={PUBLIC_FOLDER + "/heart.png"}
               alt=""
               className="likeIcon"
               onClick={() => handleLike()}
