@@ -1,11 +1,12 @@
 import React from "react";
 
 export default function Online({user}) {
+  const PUBLIC_FOLDER = import.meta.env.VITE_PUBLIC_FOLDER;
   return (
     <li className="rightbarFriend">
       <div className="rightbarProfileImgContainer">
         <img
-          src={user.profilePicture}
+          src={PUBLIC_FOLDER + user.profilePicture}
           alt=""
           className="rightbarProfileImg"
         />
