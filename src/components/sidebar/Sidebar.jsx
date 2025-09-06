@@ -11,6 +11,7 @@ import {
 } from "@mui/icons-material";
 import CloseFriend from "../closefriend/CloseFriend";
 import { Users } from "../../assets/dummyData.js";
+import { Link } from "react-router-dom";
 
 export default function Sidebar() {
   return (
@@ -19,7 +20,9 @@ export default function Sidebar() {
         <ul className="sidebarList">
           <li className="sidebarListItem">
             <Home className="sidebarIcon" />
-            <span className="sidebarListItemText">Home</span>
+            <Link to="/" style={{ textDecoration: "none", color: "black" }}>
+              <span className="sidebarListItemText">Home</span>
+            </Link>
           </li>
           <li className="sidebarListItem">
             <Search className="sidebarIcon" />
@@ -39,7 +42,12 @@ export default function Sidebar() {
           </li>
           <li className="sidebarListItem">
             <Person className="sidebarIcon" />
-            <span className="sidebarListItemText">Profile</span>
+            <Link
+              to="/profile/:username"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              <span className="sidebarListItemText">プロフィール</span>
+            </Link>
           </li>
           <li className="sidebarListItem">
             <Settings className="sidebarIcon" />
@@ -48,9 +56,9 @@ export default function Sidebar() {
         </ul>
         <hr className="sidebarHr" />
         <ul className="sidebarFriendList">
-        {Users.map((user) => (
-          <CloseFriend user={user} key={user.id} />
-        ))}
+          {Users.map((user) => (
+            <CloseFriend user={user} key={user.id} />
+          ))}
         </ul>
       </div>
     </div>
