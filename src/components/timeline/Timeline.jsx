@@ -2,7 +2,7 @@ import React from "react";
 import Share from "../share/Share.jsx";
 import "./Timeline.css";
 import Post from "../post/Post.jsx";
-import { Posts } from "../../assets/dummyData.js";
+import { Posts } from "../../../dummyData.js";
 // import { useState } from "react";
 
 export default function Timeline() {

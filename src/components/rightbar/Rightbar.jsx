@@ -1,6 +1,6 @@
 import React from "react";
 import "./Rightbar.css";
-import { Users } from "../../assets/dummyData.js";
+import { Users } from "../../../dummyData.js";
 import Online from "../online/Online.jsx";
 
 export default function Rightbar({ profile }) {

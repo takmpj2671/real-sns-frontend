@@ -1,7 +1,7 @@
 import React from "react";
 import "./Post.css";
 import { MoreVert } from "@mui/icons-material";
-import { Users } from "../../assets/dummyData.js";
+import { Users } from "../../../dummyData.js";
 import { useState } from "react";
 
 export default function Post({ post }) {

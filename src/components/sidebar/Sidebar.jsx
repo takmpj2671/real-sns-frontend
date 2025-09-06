@@ -10,7 +10,7 @@ import {
   Settings,
 } from "@mui/icons-material";
 import CloseFriend from "../closefriend/CloseFriend";
-import { Users } from "../../assets/dummyData.js";
+import { Users } from "../../../dummyData.js";
 import { Link } from "react-router-dom";
 
 export default function Sidebar() {
