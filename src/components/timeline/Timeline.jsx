@@ -6,15 +6,17 @@ import axios from "axios";
 // import { Posts } from "../../../dummyData.js";
 
 
-export default function Timeline() {
+export default function Timeline({username}) {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     // console.log("useEffect実行");
     const fetchPosts = async() => {
-      const response = await axios.get("/api/posts/timeline/6860feec3e2aa3f2dcb4dc91");
+      const response = username 
+      ? await axios.get(`/api/posts/profile/${username}`)
+      : await axios.get("/api/posts/timeline/6860feec3e2aa3f2dcb4dc91");
       setPosts(response.data);
-      // console.log(response);
+      console.log(response);
     };
     fetchPosts();
   }, []); //ページのマウント時に一回だけここに書かれるものが読み込まれる。

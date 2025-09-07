@@ -32,7 +32,7 @@ export default function Profile() {
             </div>
           </div>
           <div className="profileRightBottom">
-            <Timeline />
+            <Timeline username="Yusuke"/>{/*usernameで渡したpropがあるか無いかでtimelineの表示を変える。*/}
             <Rightbar profile/> {/*profile(Prop)をつけることでprofileに関するRightbarと認識させる。 Home.jsxの方にはついていない。*/}
           </div>
         </div>
