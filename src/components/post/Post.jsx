@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import {format} from "timeago.js";
 
-export default function Post({ post }) {
+export default function Post({ user }) {
   const PUBLIC_FOLDER = import.meta.env.VITE_PUBLIC_FOLDER;
 
   const [like, setLike] = useState(post.likes?.length || 0);

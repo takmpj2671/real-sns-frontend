@@ -3,7 +3,7 @@ import "./Rightbar.css";
 import { Users } from "../../../dummyData.js";
 import Online from "../online/Online.jsx";
 
-export default function Rightbar({ profile }) {
+export default function Rightbar({ user }) {
   const PUBLIC_FOLDER = import.meta.env.VITE_PUBLIC_FOLDER;
   const HomeRightbar = () => {
     return (
@@ -105,7 +105,7 @@ export default function Rightbar({ profile }) {
     //homeとprofileのrightbarタグの共通部分を書く。
     <div className="rightbar">
       <div className="rihgtbarWrapper">
-        {profile ? <ProfileRightbar /> : <HomeRightbar />}
+        {user ? <ProfileRightbar /> : <HomeRightbar />}
       </div>
     </div>
   );

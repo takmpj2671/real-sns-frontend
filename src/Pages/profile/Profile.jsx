@@ -1,12 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Topbar from "../../components/topbar/Topbar";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Timeline from "../../components/timeline/Timeline";
 import Rightbar from "../../components/rightbar/Rightbar";
 import "./Profile.css";
+import axios from "axios";
 
 export default function Profile() {
-  const PUBLIC_FOLDER = import.meta.env.VITE_PUBLIC_FOLDER ;
+  const PUBLIC_FOLDER = import.meta.env.VITE_PUBLIC_FOLDER;
+
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    // console.log("useEffect実行");
+    const fetchUser = async () => {
+      const response = await axios.get(`/api/users?username=Yusuke`);
+      setUser(response.data);
+      console.log(response);
+    };
+    fetchUser();
+  }, []);
+
   return (
     <>
       <Topbar />
@@ -15,25 +29,27 @@ export default function Profile() {
         <div className="profileRight">
           <div className="profileRightTop">
             <div className="profileCover">
-                <img 
-                src={PUBLIC_FOLDER  + "/post/3.jpeg"}
-                alt="" 
-                className="profileCoverImg"/>
-                <img 
+              <img
+                src={PUBLIC_FOLDER + "/post/3.jpeg"}
+                alt=""
+                className="profileCoverImg"
+              />
+              <img
                 src={PUBLIC_FOLDER + "/person/1.jpeg"}
                 alt=""
-                className="profileUserImg" />
+                className="profileUserImg"
+              />
             </div>
             <div className="profileInfo">
-                <h4 className="profileInfoName">Yusuke</h4>
-                <span className="profileInfoDesc">
-                React, Javascriptで開発中
-                </span>
+              <h4 className="profileInfoName">{user.username}</h4>
+              <span className="profileInfoDesc">{user.desc}</span>
             </div>
           </div>
           <div className="profileRightBottom">
-            <Timeline username="Yusuke"/>{/*usernameで渡したpropがあるか無いかでtimelineの表示を変える。*/}
-            <Rightbar profile/> {/*profile(Prop)をつけることでprofileに関するRightbarと認識させる。 Home.jsxの方にはついていない。*/}
+            <Timeline username="Yusuke" />
+            {/*usernameで渡したpropがあるか無いかでtimelineの表示を変える。*/}
+            <Rightbar user={user} />
+            {/*profile(Prop)をつけることでprofileに関するRightbarと認識させる。 Home.jsxの方にはついていない。*/}
           </div>
         </div>
       </div>
