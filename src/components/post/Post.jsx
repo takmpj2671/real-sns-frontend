@@ -4,6 +4,7 @@ import { MoreVert } from "@mui/icons-material";
 // import { Users } from "../../../dummyData.js";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import {format} from "timeago.js";
 
 export default function Post({ post }) {
   const PUBLIC_FOLDER = import.meta.env.VITE_PUBLIC_FOLDER;
@@ -42,7 +43,7 @@ export default function Post({ post }) {
               className="postProfileImg"
             />
             <span className="postUsername">{user.username}</span>
-            <span className="postDate">{post.date}</span>
+            <span className="postDate">{format(post.createdAt)}</span>
           </div>
           <div className="postTopRight">
             <MoreVert />
