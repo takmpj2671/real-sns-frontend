@@ -1,19 +1,31 @@
 import React from "react";
 import "./Post.css";
 import { MoreVert } from "@mui/icons-material";
-import { Users } from "../../../dummyData.js";
-import { useState } from "react";
+// import { Users } from "../../../dummyData.js";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function Post({ post }) {
   const PUBLIC_FOLDER = import.meta.env.VITE_PUBLIC_FOLDER;
 
   const [like, setLike] = useState(post.like);
   const [isLiked, setIsLiked] = useState(false);
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    // console.log("useEffect実行");
+    const fetchUser = async () => {
+      const response = await axios.get(`/api/users/${post.userId}`);
+      setUser(response.data);
+      console.log(response);
+    };
+    fetchUser();
+  }, []); //ページのマウント時に一回だけここに書かれるものが読み込まれる。
 
   const handleLike = () => {
-    setLike(isLiked? like - 1 : like + 1);
+    setLike(isLiked ? like - 1 : like + 1);
     setIsLiked(!isLiked);
-  }
+  };
   // const user = Users.filter((user) => user.id ===1);//filter関数は配列を返す。
   // console.log(user[0].username);//filter関数の特徴により、配列の指定の番号が必要。
   return (
@@ -23,15 +35,13 @@ export default function Post({ post }) {
           <div className="postTopLeft">
             <img
               src={
-                PUBLIC_FOLDER +
-                Users.filter((user) => user.id === post.id)[0].profilePicture
+                user.profilePicture 
+                || PUBLIC_FOLDER + "/person/noAvatar.png"
               }
               alt=""
               className="postProfileImg"
             />
-            <span className="postUsername">
-              {Users.filter((user) => user.id === post.id)[0].username}
-            </span>
+            <span className="postUsername">{user.username}</span>
             <span className="postDate">{post.date}</span>
           </div>
           <div className="postTopRight">

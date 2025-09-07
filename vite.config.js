@@ -7,8 +7,8 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "http://localhost:5001",
-        changeOrigin: true,
+        target: "http://localhost:5001",//target: リクエストが転送される先のサーバーのURLを指定します。
+        changeOrigin: true,//true に設定すると、Originヘッダーが転送先サーバーに偽装されます。これは、サーバーがオリジンをチェックしてリクエストをブロックする場合に重要です。﻿
       },
     },
   },

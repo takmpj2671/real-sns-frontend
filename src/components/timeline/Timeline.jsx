@@ -12,7 +12,8 @@ export default function Timeline() {
     // console.log("useEffect実行");
     const fetchPosts = async() => {
       const response = await axios.get("/api/posts/timeline/6860feec3e2aa3f2dcb4dc91");
-      console.log(response);
+      setPosts(response.data);
+      // console.log(response);
     };
     fetchPosts();
   }, []); //ページのマウント時に一回だけここに書かれるものが読み込まれる。
@@ -25,9 +26,9 @@ export default function Timeline() {
 {/*アロー関数での注意点。
   一行: () => <div>Hello</div>
   複数行: () => (JSX) または () => { return JSX; } */}
-        {/* {Posts.map((post) => (
-          <Post post={post} key={post.id}/>
-        ))} */}
+        {posts.map((post) => (
+          <Post post={post} key={post._id || post.id}/>
+        ))}
       </div>
     </div>
   );
