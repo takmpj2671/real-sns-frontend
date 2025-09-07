@@ -8,7 +8,7 @@ import axios from "axios";
 export default function Post({ post }) {
   const PUBLIC_FOLDER = import.meta.env.VITE_PUBLIC_FOLDER;
 
-  const [like, setLike] = useState(post.like);
+  const [like, setLike] = useState(post.likes?.length || 0);
   const [isLiked, setIsLiked] = useState(false);
   const [user, setUser] = useState({});
 
