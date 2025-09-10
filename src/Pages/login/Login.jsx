@@ -7,9 +7,9 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault(); //loginを押してもリロードされなくなる。
-    console.log(email.current.value);
-    console.log(password.current.value);
-  }
+  //   console.log(email.current.value);
+  //   console.log(password.current.value);
+ }
   return (
     <div className="login">
       <div className="loginWrapper">
