@@ -5,16 +5,18 @@ import Timeline from "../../components/timeline/Timeline";
 import Rightbar from "../../components/rightbar/Rightbar";
 import "./Profile.css";
 import axios from "axios";
+import { useParams } from "react-router-dom"; //URLのパラメーターを取得する。
 
 export default function Profile() {
   const PUBLIC_FOLDER = import.meta.env.VITE_PUBLIC_FOLDER;
 
   const [user, setUser] = useState({});
+  const username = useParams().username; //URLからusernameを取得する。
 
   useEffect(() => {
     // console.log("useEffect実行");
     const fetchUser = async () => {
-      const response = await axios.get(`/api/users?username=Yusuke`);
+      const response = await axios.get(`/api/users?username=${username}`);
       setUser(response.data);
       console.log(response);
     };
@@ -30,12 +32,14 @@ export default function Profile() {
           <div className="profileRightTop">
             <div className="profileCover">
               <img
-                src={PUBLIC_FOLDER + "/post/3.jpeg"}
+                src={user.cover || PUBLIC_FOLDER + "/post/3.jpeg"}
                 alt=""
                 className="profileCoverImg"
               />
               <img
-                src={PUBLIC_FOLDER + "/person/1.jpeg"}
+                src={
+                  user.profilePicture || PUBLIC_FOLDER + "/person/noAvatar.png"
+                }
                 alt=""
                 className="profileUserImg"
               />
@@ -46,7 +50,7 @@ export default function Profile() {
             </div>
           </div>
           <div className="profileRightBottom">
-            <Timeline username="Yusuke" />
+            <Timeline username={username} />
             {/*usernameで渡したpropがあるか無いかでtimelineの表示を変える。*/}
             <Rightbar user={user} />
             {/*profile(Prop)をつけることでprofileに関するRightbarと認識させる。 Home.jsxの方にはついていない。*/}

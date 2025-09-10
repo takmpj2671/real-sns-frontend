@@ -4,9 +4,10 @@ import { MoreVert } from "@mui/icons-material";
 // import { Users } from "../../../dummyData.js";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import {format} from "timeago.js";
+import { format } from "timeago.js";
+import { Link } from "react-router-dom";
 
-export default function Post({ user }) {
+export default function Post({ post }) {
   const PUBLIC_FOLDER = import.meta.env.VITE_PUBLIC_FOLDER;
 
   const [like, setLike] = useState(post.likes?.length || 0);
@@ -16,12 +17,13 @@ export default function Post({ user }) {
   useEffect(() => {
     // console.log("useEffect実行");
     const fetchUser = async () => {
-      const response = await axios.get(`/api/users/${post.userId}`);
+      const response = await axios.get(`/api/users?userId=${post.userId}`);
       setUser(response.data);
       console.log(response);
     };
     fetchUser();
-  }, []); //ページのマウント時に一回だけここに書かれるものが読み込まれる。
+  }, [post.userId]); //ページのマウント時に一回だけここに書かれるものが読み込まれる。
+  //post.userIdを配列に含めることでuserId更新時に、この関数が毎回発火する。
 
   const handleLike = () => {
     setLike(isLiked ? like - 1 : like + 1);
@@ -34,14 +36,15 @@ export default function Post({ user }) {
       <div className="postWrapper">
         <div className="postTop">
           <div className="postTopLeft">
-            <img
-              src={
-                user.profilePicture 
-                || PUBLIC_FOLDER + "/person/noAvatar.png"
-              }
-              alt=""
-              className="postProfileImg"
-            />
+            <Link to={`/profile/${user.username}`}>
+              <img
+                src={
+                  user.profilePicture || PUBLIC_FOLDER + "/person/noAvatar.png"
+                }
+                alt=""
+                className="postProfileImg"
+              />
+            </Link>
             <span className="postUsername">{user.username}</span>
             <span className="postDate">{format(post.createdAt)}</span>
           </div>
@@ -51,9 +54,7 @@ export default function Post({ user }) {
         </div>
         <div className="postCenter">
           <span className="postText">{post.desc}</span>
-          <img 
-          src={PUBLIC_FOLDER + post.img} 
-          alt="" className="postImg" />
+          <img src={PUBLIC_FOLDER + post.img} alt="" className="postImg" />
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">

@@ -19,7 +19,7 @@ export default function Timeline({username}) {
       console.log(response);
     };
     fetchPosts();
-  }, []); //ページのマウント時に一回だけここに書かれるものが読み込まれる。
+  }, [username]); //ページのマウント時に一回だけここに書かれるものが読み込まれる。
 
   return (
     <div className="timeline">
