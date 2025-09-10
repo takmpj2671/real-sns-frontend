@@ -1,15 +1,26 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
 import "./Login.css";
+import { loginCall } from "../../actionCalls";
+import { AuthContext } from "../../state/AuthContext";
 
 export default function Login() {
-  const email = useRef();//input属性を監視する。（他の属性もJSXで参照可,ref={})
+  const email = useRef(); //input属性を監視する。（他の属性もJSXで参照可,ref={})
   const password = useRef();
+  const {user, isFetching, error, dispatch} = useContext(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault(); //loginを押してもリロードされなくなる。
-  //   console.log(email.current.value);
-  //   console.log(password.current.value);
- }
+    //   console.log(email.current.value);
+    //   console.log(password.current.value);
+    loginCall({
+      email: email.current.value,
+      password: password.current.value,
+    },
+    dispatch
+  );
+  };
+
+  console.log(user);
   return (
     <div className="login">
       <div className="loginWrapper">
@@ -27,7 +38,7 @@ export default function Login() {
               className="loginInput"
               placeholder="Email"
               required
-              ref= {email}
+              ref={email}
             />
             <input
               type="password"
