@@ -32,7 +32,7 @@ export default function Profile() {
           <div className="profileRightTop">
             <div className="profileCover">
               <img
-                src={user.cover || PUBLIC_FOLDER + "/post/3.jpeg"}
+                src={user.coverPicture || PUBLIC_FOLDER + "/post/3.jpeg"}
                 alt=""
                 className="profileCoverImg"
               />
