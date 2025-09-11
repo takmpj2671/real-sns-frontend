@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Post.css";
 import { MoreVert } from "@mui/icons-material";
 // import { Users } from "../../../dummyData.js";
@@ -6,8 +6,10 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { format } from "timeago.js";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../state/AuthContext";
 
 export default function Post({ post }) {
+  const { user: currentUser } = useContext(AuthContext);
   const PUBLIC_FOLDER = import.meta.env.VITE_PUBLIC_FOLDER;
 
   const [like, setLike] = useState(post.likes?.length || 0);
@@ -25,7 +27,15 @@ export default function Post({ post }) {
   }, [post.userId]); //ページのマウント時に一回だけここに書かれるものが読み込まれる。
   //post.userIdを配列に含めることでuserId更新時に、この関数が毎回発火する。
 
-  const handleLike = () => {
+  const handleLike = async () => {
+    try {
+      //いいねのAPIを叩く
+      await axios.put(`/api/posts/${post._id}/like`, {
+        userId: currentUser._id,
+      });
+    } catch (err) {
+      console.log(err);
+    }
     setLike(isLiked ? like - 1 : like + 1);
     setIsLiked(!isLiked);
   };
@@ -39,7 +49,9 @@ export default function Post({ post }) {
             <Link to={`/profile/${user.username}`}>
               <img
                 src={
-                  user.profilePicture || PUBLIC_FOLDER + "/person/noAvatar.png"
+                  user.profilePicture
+                    ? PUBLIC_FOLDER + user.profilePicture
+                    : PUBLIC_FOLDER + "/person/noAvatar.png"
                 }
                 alt=""
                 className="postProfileImg"
