@@ -1,4 +1,4 @@
-const AuthReducer = (state, action) => {
+const AuthReducer = (state, action) => { //React useReducerの仕様で、dispatchに渡したものが必ずReducerの第2引数（action）になる
     switch(action.type) {
         case "LOGIN_START" :
             return {
