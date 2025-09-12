@@ -1,28 +1,31 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useRef, useState } from "react";
 import "./Share.css";
 import { Analytics, Face, Gif, Image } from "@mui/icons-material";
 import { AuthContext } from "../../state/AuthContext";
 import axios from "axios";
 
 export default function Share() {
-  const {user} = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const PUBLIC_FOLDER = import.meta.env.VITE_PUBLIC_FOLDER;
   const desc = useRef();
-  const handleSubmit = async(e) => {
+
+  const [file, setFile] = useState(null);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     const newPost = {
       userId: user._id,
       desc: desc.current.value,
     };
-    
-    try{
+
+    try {
       await axios.post("/api/posts", newPost);
       window.location.reload();
-    } catch(err) {
+    } catch (err) {
       console.log(err);
     }
-  }
+  };
   return (
     <div className="share">
       <div className="shareWrapper">
@@ -45,14 +48,26 @@ export default function Share() {
         </div>
         <hr className="shareHr" />
 
-        <form className="shareButtons" onSubmit={(e) => {handleSubmit(e)}}>
+        <form
+          className="shareButtons"
+          onSubmit={(e) => {
+            handleSubmit(e);
+          }}
+        >
           <div className="shareOptions">
             {" "}
             {/*写真、GIF、Feeling、投票*/}
-            <div className="shareOption">
+            <label className="shareOption" htmlFor="file">
               <Image className="shareIcon" htmlColor="blue" />
               <span className="shareOptionText">写真</span>
-            </div>
+              <input
+                type="file"
+                id="file"
+                accept=".png, .jpeg, .jpg"
+                style={{ display: "none" }}
+                onChange={(e) => setFile(e.target.files[0])}
+              />
+            </label>
             <div className="shareOption">
               <Gif className="shareIcon" htmlColor="hotpink" />
               <span className="shareOptionText">GIF</span>
@@ -66,7 +81,9 @@ export default function Share() {
               <span className="shareOptionText">投票</span>
             </div>
           </div>
-          <button className="shareButton" type="submit">投稿</button>
+          <button className="shareButton" type="submit">
+            投稿
+          </button>
         </form>
       </div>
     </div>
