@@ -6,18 +6,21 @@ import axios from "axios";
 import { AuthContext } from "../../state/AuthContext.jsx";
 // import { Posts } from "../../../dummyData.js";
 
-
-export default function Timeline({username}) {
+export default function Timeline({ username }) {
   const [posts, setPosts] = useState([]);
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
     // console.log("useEffect実行");
-    const fetchPosts = async() => {
-      const response = username 
-      ? await axios.get(`/api/posts/profile/${username}`)//プロフィールの場合
-      : await axios.get(`/api/posts/timeline/${user._id}`);//ホームの場合
-      setPosts(response.data);
+    const fetchPosts = async () => {
+      const response = username
+        ? await axios.get(`/api/posts/profile/${username}`) //プロフィールの場合
+        : await axios.get(`/api/posts/timeline/${user._id}`); //ホームの場合
+      setPosts(
+        response.data.sort((post1, post2) => { //useStateで配列で初期化しているため、postsは配列である。
+          return new Date(post2.createdAt) - new Date(post1.createdAt);
+        })
+      );
       console.log(response);
     };
     fetchPosts();
@@ -28,11 +31,11 @@ export default function Timeline({username}) {
       <div className="timelineWrapper">
         <Share />
 
-{/*アロー関数での注意点。
+        {/*アロー関数での注意点。
   一行: () => <div>Hello</div>
   複数行: () => (JSX) または () => { return JSX; } */}
         {posts.map((post) => (
-          <Post post={post} key={post._id || post.id}/>
+          <Post post={post} key={post._id || post.id} />
         ))}
       </div>
     </div>
